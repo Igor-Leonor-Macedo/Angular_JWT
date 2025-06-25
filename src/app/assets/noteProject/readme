@@ -1,0 +1,23 @@
+O SSR ou pré-renderização não nescessita da aplicação da estrutura de HTML completo nos componentes angular, como o seguinte exemplo:
+
+Exemplo de componente errado:
+
+  <!DOCTYPE html>
+  <html lang="pt-br">
+    <head>
+      <meta charset="UTF-8">
+      ...
+    </head>
+    <body>
+      <p>home works!</p>
+    </body>
+  </html>
+
+Exemplo de componente certo:
+
+  <mat-card>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <p>Bem-vindo! Faça login no sistema.</p>
+    </mat-card-content>
+  </mat-card>
