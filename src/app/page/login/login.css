@@ -1,0 +1,53 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 16px;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+}
+
+.card-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  height: 50px;
+  padding: 20px;
+  background-color: #fdf000;
+}
+
+/*********************** Botão ***********************/
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.btn-icon{
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  vertical-align: middle; /* Mantém alinhado com o texto */
+}
+
+/* Botão primário (Login) */
+.btn-login{
+  background-color: #007bff; /* Azul */
+  color: white !important;   /*Sobrepõem a cor primaria do angular*/
+}
+.btn-login:hover {
+  background-color: #1743c1;
+}
+
+/* Botão secundário (Register) */
+.btn-register {
+  background-color: #28a745; /* Verde */
+  color: white !important;
+}
+.btn-register:hover {
+  background-color: #218838;
+}
+

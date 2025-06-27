@@ -1,7 +1,20 @@
-<mat-card>
-  <mat-card-title>Login</mat-card-title>
-  <mat-card-content>
-    <p>Bem-vindo! Faça login no sistema.</p>
-  </mat-card-content>
-</mat-card>
+  <div class="card-container">
+    <mat-card class="card-login">
+      <div class="input-container">
+
+      </div>
+      <div class="button-container">
+        <button mat-stroked-button type="submit" class="btn-login" (click)="onLogin()">
+          <img src="assets/icon/User_Verified.svg" class="btn-icon">Login
+        </button>
+        <button mat-stroked-button type="reset" class="btn-register" (click)="registerUser()">
+          <img src="assets/icon/Id_User_Register.svg" class="btn-icon">Register
+        </button>
+      </div>
+    </mat-card>
+  </div>
+
+
+
+
 
