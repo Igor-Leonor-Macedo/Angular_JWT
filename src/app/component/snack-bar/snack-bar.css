@@ -1,0 +1,71 @@
+/* Remove o estilo do contêiner do snackbar */
+::ng-deep .mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* Remove espaçamentos extras */
+::ng-deep .mdc-snackbar__surface {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-width: unset !important;
+}
+
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__label {
+  padding: 0 !important;
+}
+
+.custom-snackbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 48px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: white;
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 30px;
+  width: 50px;
+  height: 50px;
+}
+
+.message {
+  font-size: 14px;
+  margin-right: 24px;
+}
+
+.action-button {
+  color: white;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.15); /* Fundo semi-transparente para o botão */
+  border-radius: 4px;
+  padding: 4px 12px;
+  min-width: auto;
+}
+
+.success {
+  background-color: #4caf50;
+}
+
+.error {
+  background-color: #f44336;
+}
+
+.warn {
+  background-color: #ff9800;
+}
+
+.info {
+  background-color: #2196f3;
+}

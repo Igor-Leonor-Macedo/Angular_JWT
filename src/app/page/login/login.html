@@ -1,20 +1,43 @@
   <div class="card-container">
     <mat-card class="card-login">
-      <div class="input-container">
-
-      </div>
-      <div class="button-container">
-        <button mat-stroked-button type="submit" class="btn-login" (click)="onLogin()">
-          <img src="assets/icon/User_Verified.svg" class="btn-icon">Login
-        </button>
-        <button mat-stroked-button type="reset" class="btn-register" (click)="registerUser()">
-          <img src="assets/icon/Id_User_Register.svg" class="btn-icon">Register
-        </button>
-      </div>
+      <form [formGroup]="form">
+        <div class="input-container">
+          <mat-form-field appearance="fill">
+            <mat-label>CPF</mat-label>
+            <input
+              matInput
+              formControlName="CPF"
+              mask="000.000.000-00"
+              placeholder="000.000.000-00"
+              required
+            />
+            <mat-error *ngIf="form.get('CPF')?.errors?.['required']">
+              CPF é obrigatório
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Senha</mat-label>
+            <input matInput [type]="hide() ? 'password' : 'text'" formControlName="Password"/>
+            <button mat-icon-button matSuffix
+                    (click)="togglePasswordVisibility($event)"
+                    [attr.aria-label]="'Esconder senha'"
+                    [attr.aria-pressed]="hide()">
+              <img [src]="hide() ? 'assets/icon/Eye_Off.svg' : 'assets/icon/Eye_On.svg'"
+                   width="5" height="5" class="password-icon"/>
+            </button>
+            <mat-error *ngIf="form.get('Password')?.errors?.['required']">
+              Password é obrigatório
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="button-container">
+          <button mat-stroked-button type="submit" class="btn-login" (click)="onLogin()">
+            <img src="assets/icon/User_Verified.svg" class="btn-icon">Login
+          </button>
+          <button mat-stroked-button type="reset" class="btn-register" (click)="registerUser()">
+            <img src="assets/icon/Id_User_Register.svg" class="btn-icon">Register
+          </button>
+        </div>
+      </form>
     </mat-card>
   </div>
-
-
-
-
-

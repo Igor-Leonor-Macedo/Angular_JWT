@@ -1,0 +1,25 @@
+  <div class="custom-snackbar" [ngClass]="data.type">
+    <div class="content">
+      <!-- Uso de imagem como ícone ao invés de mat-icon -->
+      <img
+        *ngIf="data.iconPath"
+        [src]="data.iconPath"
+        class="icon"
+        alt="ícone"
+      >
+      <img
+        *ngIf="!data.iconPath"
+        [src]="getDefaultIconPath(data.type)"
+        class="icon"
+        alt="ícone"
+      >
+      <span class="message">{{ data.message }}</span>
+    </div>
+    <button
+      *ngIf="data.action"
+      mat-button
+      class="action-button"
+      (click)="snackBarRef.dismiss()">
+      {{ data.action }}
+    </button>
+  </div>
