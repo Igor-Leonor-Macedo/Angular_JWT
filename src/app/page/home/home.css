@@ -12,12 +12,20 @@
   background-color: #03b7f8; /*Cor de fundo da NavBar*/
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /*Sombra na NavBar*/
   min-height: 75px; /*Largura Minima da NavBar*/
+  display: flex; /* garante o layout horizontal */
+  flex-wrap: wrap; /* Permite quebra de linha */
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 .favicon-navBar{
   display: flex;
   align-items: center; /* Alinha a imagem e o texto na mesma linha */
+  flex-shrink: 0;
   gap: 13px; /* Ajusta a distância entre a imagem e o texto */
+  width: auto; /* Permanece com largura natural */
   margin-left: 5px; /*Margin a esquerda do logo*/
+  position: absolute;
 }
 h1{
   color: white; /*Cor da Fonte*/
@@ -33,15 +41,20 @@ h1{
   transform: scale(1.3); /* Aumenta ligeiramente o tamanho */
   cursor: pointer;
 }
-.navBar-buttons{
+/*Botões Centralizados*/
+.navBar-buttons-center{
   display: flex;
-  gap: 20px;  /* Espaço entre os botões */
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center; /* Alinha verticalmente com a toolbar */
+  justify-content: center;
+
+  gap: 20px;  /* Espaço entre os botões */
   flex-grow: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
-/* Aplica estilo direto aos botões */
-.navBar-buttons a {
+.navBar-buttons-center a {
   text-decoration: none;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /*Sombra no Texto*/
   color: white;
@@ -50,15 +63,125 @@ h1{
   border-radius: 4px;
   transition: transform 0.2s ease-in-out, background-color 0.2s; /*Suavidade ao passar o mouse*/
 }
-/* Hover bonito */
-.navBar-buttons a:hover {
+.navBar-buttons-center a:hover {
   background-color: rgba(255, 255, 255, 0.2); /*Sombra do Botão*/
   transform: scale(1.3); /* Aumenta ligeiramente o tamanho */
 }
-.navBar-buttons a:active {
+.navBar-buttons-center a:active {
   text-decoration: underline; /* Sublinha o texto quando clicado */
   transform: scale(1.3); /* Aumenta ligeiramente o tamanho */
   font-weight: bold; /* Opcional: Deixa o texto em negrito */
   font-size: 20px;
 }
-/*********************** Container content ***********************/
+/*Botões da Direita*/
+.navBar-buttons-right{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: right;
+  gap: 5px;  /* Espaço entre os botões */
+  flex-grow: 1;
+  margin-left: auto;
+  margin-right: 2px;
+}
+.navBar-buttons-right a{
+  text-decoration: none;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /*Sombra no Texto*/
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: transform 0.2s ease-in-out, background-color 0.2s; /*Suavidade ao passar o mouse*/
+}
+.navBar-buttons-right a:hover{
+  background-color: rgba(255, 255, 255, 0.2); /*Sombra do Botão*/
+  transform: scale(1.3); /* Aumenta ligeiramente o tamanho */
+}
+.navBar-buttons-right a:active {
+  text-decoration: underline; /* Sublinha o texto quando clicado */
+  transform: scale(1.3); /* Aumenta ligeiramente o tamanho */
+  font-weight: bold; /* Opcional: Deixa o texto em negrito */
+  font-size: 20px;
+}
+/*********************** Responsiveness smaller screens ***********************/
+@media (max-width: 1024px) {
+  .navBar-buttons-center a,
+  .navBar-buttons-right a {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .favicon {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navBar-buttons-center a,
+  .navBar-buttons-right a {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  h1 {
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .favicon-navBar {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .navBar-buttons-center,
+  .navBar-buttons-right {
+    justify-content: center;
+    width: 100%;
+  }
+  @media (max-width: 640px) {
+    .card-navBar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 5px;
+    }
+
+    .favicon-navBar {
+      flex-direction: row;
+      justify-content: flex-start;
+      width: auto;
+      flex-wrap: nowrap;
+    }
+
+    h1 {
+      font-size: 1.1rem;
+      text-align: left;
+      white-space: nowrap; /* Evita quebra do texto */
+    }
+    .favicon {
+      width: 35px;
+      height: 35px;
+    }
+
+    .navBar-buttons-center,
+    .navBar-buttons-right {
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .navBar-buttons-center a,
+    .navBar-buttons-right a {
+      font-size: 13px;
+      padding: 4px 10px;
+    }
+  }
+
+}
+

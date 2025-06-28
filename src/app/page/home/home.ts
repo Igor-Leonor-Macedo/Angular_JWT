@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {MatCard} from '@angular/material/card';
 import {MatToolbar} from '@angular/material/toolbar';
 
 @Component({
@@ -12,4 +11,7 @@ import {MatToolbar} from '@angular/material/toolbar';
 })
 export class HomeComponent {
 
+  logout() {
+
+  }
 }
