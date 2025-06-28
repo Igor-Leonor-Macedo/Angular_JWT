@@ -21,7 +21,7 @@ import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
     MatInput,
     ReactiveFormsModule,
     MatIconButton,
-    NgxMaskDirective
+    NgxMaskDirective /*Ativa a Máscara do CPF*/
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
@@ -32,7 +32,6 @@ import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
 })
 export class LoginComponent {
   form: FormGroup;
-  cpf: string ="";
 
   hide = signal(true);
   togglePasswordVisibility(event: MouseEvent) {
