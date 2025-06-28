@@ -23,7 +23,7 @@
                     [attr.aria-label]="'Esconder senha'"
                     [attr.aria-pressed]="hide()">
               <img [src]="hide() ? 'assets/icon/Eye_Off.svg' : 'assets/icon/Eye_On.svg'"
-                   width="5" height="5" class="password-icon"/>
+                class="password-icon"/>
             </button>
             <mat-error *ngIf="form.get('Password')?.errors?.['required']">
               Password é obrigatório
