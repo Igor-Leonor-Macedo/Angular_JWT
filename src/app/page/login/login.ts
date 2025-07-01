@@ -57,10 +57,10 @@ export class LoginComponent {
         next:(response)=>{
           if(response){
             console.log('Login realizado com sucesso!');
-            const userData = this.loginService.getUserData();
-            console.log('Dados do usuário:', userData); // userId, userName, roles, etc.
-            //localStorage.setItem('userId', response.id?.toString() || '');
+            console.log('Token: ', response);
             this.router.navigate(['/home']);
+          }else {
+            this.snackbarService.error(response);
           }
         },
         error:(error)=>{
