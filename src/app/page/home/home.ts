@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,12 @@ import {MatToolbar} from '@angular/material/toolbar';
   styleUrl: './home.css'
 })
 export class HomeComponent {
+  constructor(private router: Router) {
+  }
 
-  logout() {
-
+  logout(): void {
+    localStorage.clear();
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
   }
 }

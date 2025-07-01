@@ -11,8 +11,7 @@
       private tokenSubject = new BehaviorSubject<string | null>(null);
 
 
-      constructor(private router: Router, private http: HttpClient) {
-
+    constructor(private router: Router, private http: HttpClient) {
       }
 
       login(cpf:string, password: string):Observable<string>{
@@ -27,7 +26,7 @@
             tap(response => {
               if (response) {
                 localStorage.setItem('token', response);
-                this.tokenSubject.next(response);
+                this.extractAndSaveUserData(response);
               }
               else {
                 console.log('Erro:', response);
@@ -42,26 +41,23 @@
             })
           );
       }
-      logout(): void {
-        localStorage.removeItem('token');
-        this.tokenSubject.next(null);
-      }
-
       getToken(): string | null {
         return this.tokenSubject.value;
       }
-
-      isAuthenticated(): boolean {
-        return !!this.getToken();
-      }
-
-      // Decodificar JWT para pegar dados do usuário
-      getUserData(): any {
-        const token = this.getToken();
-        if (token) {
+      private extractAndSaveUserData(token: string): void {
+        try {
           const payload = JSON.parse(atob(token.split('.')[1]));
-          return payload;
+          const userData: UserData = {
+            userId: payload.userId,
+            roles: payload.roles || []
+          };
+          localStorage.setItem('userId', userData.userId);
+          console.log("id: ",userData.userId)
+          localStorage.setItem('userRoles', JSON.stringify(userData.roles));
+          console.log("roles: ",userData.roles)
         }
-        return null;
+        catch (error) {
+          console.error('Erro ao decodificar token:', error);
+        }
       }
     }
