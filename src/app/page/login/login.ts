@@ -56,7 +56,11 @@ export class LoginComponent {
       this.loginService.login(cpf, password).subscribe({
         next:(response)=>{
           if(response){
-
+            console.log('Login realizado com sucesso!');
+            const userData = this.loginService.getUserData();
+            console.log('Dados do usuário:', userData); // userId, userName, roles, etc.
+            //localStorage.setItem('userId', response.id?.toString() || '');
+            this.router.navigate(['/home']);
           }
         },
         error:(error)=>{
