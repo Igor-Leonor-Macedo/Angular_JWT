@@ -59,9 +59,6 @@ export class LoginComponent {
             console.log('Login realizado com sucesso!');
             this.router.navigate(['/home']);
           }
-          else{
-            this.snackbarService.error(response);
-          }
         },
         error:(error)=>{
           const errorMessage = error.error?.message || 'Erro ao tentar fazer login. Por favor, tente novamente.';
