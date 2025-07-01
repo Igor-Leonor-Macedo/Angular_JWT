@@ -9,7 +9,7 @@
     export class LoginService{
       private apiUrl = 'http://localhost:8080'; // URL do seu Spring Boot
 
-      constructor(private router: Router, private http: HttpClient) {
+    constructor(private router: Router, private http: HttpClient) {
       }
 
       login(cpf:string, password: string):Observable<string>{
@@ -19,8 +19,5 @@
           'Content-Type': 'application/json'
         };
         return this.http.post(`${this.apiUrl}/authenticateUser`, {}, { headers, responseType: 'text' })
-      }
-      logout(): void {
-        localStorage.removeItem('token');
       }
     }
