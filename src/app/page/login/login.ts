@@ -57,7 +57,10 @@ export class LoginComponent {
         next:(response)=>{
           if(response){
             console.log('Login realizado com sucesso!');
+            console.log('Token: ', response);
             this.router.navigate(['/home']);
+          }else {
+            this.snackbarService.error(response);
           }
         },
         error:(error)=>{
