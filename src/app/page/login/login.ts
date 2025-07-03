@@ -9,6 +9,7 @@ import {LoginService} from '../../service/login.service';
 import {SnackbarService} from '../../service/snack-bar.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
+import {AuthService} from '../../service/authService';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +39,13 @@ export class LoginComponent {
     this.hide.set(!this.hide());
     event.stopPropagation();
   }
-  constructor(private router: Router, private fb: FormBuilder, private loginService: LoginService, private snackbarService: SnackbarService) {
+  constructor(private router: Router,
+              private fb: FormBuilder,
+              private loginService: LoginService,
+              private snackbarService: SnackbarService,
+              private auth:AuthService
+
+  ) {
     this.form = this.fb.group({
       CPF: ['', [Validators.required, Validators.minLength(11)]],
       Password: ['', [Validators.required, Validators.minLength(3)]]
@@ -56,9 +63,15 @@ export class LoginComponent {
       this.loginService.login(cpf, password).subscribe({
         next:(response)=>{
           if(response){
-            console.log('Login realizado com sucesso!');
-            console.log('Token: ', response);
-            this.router.navigate(['/home']);
+
+            this.auth.saveToken(response);
+
+            const roles: string[] = this.auth.getUserRoles();
+
+            if (roles.includes('ROLE_MANAGER')) this.router.navigate(['/home_manager']);
+            else if (roles.includes('ROLE_ADMIN')) this.router.navigate(['/home_admin']);
+            else if (roles.includes('ROLE_USER')) this.router.navigate(['/home']);
+            else this.router.navigate(['/acesso-negado']);
           }else {
             this.snackbarService.error(response);
           }
