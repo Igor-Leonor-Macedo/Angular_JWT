@@ -5,6 +5,8 @@ import {HomeAdminComponent} from './page/home-admin/home-admin';
 import {authGuard} from './guard/authGuard';
 import {HomeManagerComponent} from './page/home-manager/home-manager';
 import {AcessoNegadoComponent} from './page/acesso-negado/acesso-negado';
+import {MonitorComponent} from './page/monitor/monitor';
+import {AlertComponent} from './page/alert/alert';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -26,6 +28,18 @@ export const routes: Routes = [
     component: HomeManagerComponent,
     canActivate: [authGuard],
     data: { roles: ['ROLE_MANAGER'] }
+  },
+  {
+    path: 'monitor',
+    component: MonitorComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_MANAGER'] }
+  },
+  {
+    path: 'alert',
+    component: AlertComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_MANAGER'] }
   },
   {
     path: 'login',
