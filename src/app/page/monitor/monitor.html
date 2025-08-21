@@ -18,10 +18,75 @@
         <a class="nav-btn" (click)="logout()">Logout</a>
       </div>
     </mat-toolbar>
+
     <div class="button-container">
-      <button mat-stroked-button type="submit" class="btn-add" (click)="addNewForm()">
-        <img src="assets/icon/add_mobile.svg" class="btn-icon">
-      </button>
+
+      <!-- Botão + Formulário 1 -->
+      <div class="form-section">
+        <!-- Botão Add do Formulário 1 -->
+        <button *ngIf="!showForm1"
+                mat-stroked-button
+                type="button"
+                class="btn-add"
+                (click)="addNewForm(1)">
+          <img src="assets/icon/add_mobile.svg" class="btn-icon"> Formulário 1
+        </button>
+
+        <!-- Formulário 1 -->
+        <div class="form-container" *ngIf="showForm1">
+          <form [formGroup]="form1" (ngSubmit)="onSubmit(1)">
+            <mat-form-field appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="nome" placeholder="Digite seu nome">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>CPF</mat-label>
+              <input matInput formControlName="cpf" placeholder="Digite seu CPF">
+            </mat-form-field>
+
+            <div class="form-actions">
+              <button mat-raised-button color="primary" type="submit">Salvar</button>
+              <button mat-stroked-button color="warn" type="button" (click)="cancelForm(1)">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Botão + Formulário 2 -->
+      <div class="form-section">
+        <!-- Botão Add do Formulário 2 -->
+        <button *ngIf="!showForm2"
+                mat-stroked-button
+                type="button"
+                class="btn-add"
+                (click)="addNewForm(2)">
+          <img src="assets/icon/add_mobile.svg" class="btn-icon"> Formulário 2
+        </button>
+
+        <!-- Formulário 2 -->
+        <div class="form-container" *ngIf="showForm2">
+          <form [formGroup]="form2" (ngSubmit)="onSubmit(2)">
+            <mat-form-field appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="nome" placeholder="Digite seu nome">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>CPF</mat-label>
+              <input matInput formControlName="cpf" placeholder="Digite seu CPF">
+            </mat-form-field>
+
+            <div class="form-actions">
+              <button mat-raised-button color="primary" type="submit">Salvar</button>
+              <button mat-stroked-button color="warn" type="button" (click)="cancelForm(2)">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </div>
+
+
   </div>
 
