@@ -24,54 +24,42 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
   styleUrl: './monitor.css'
 })
 export class MonitorComponent implements OnInit{
-  form1!: FormGroup;
-  form2!: FormGroup;
+  forms: FormGroup[] = [];
+  showForms: boolean[] = [];
 
-  showForm1 = false;
-  showForm2 = false;
+  totalForms = 12; // aqui você controla quantos formulários quer
 
   constructor(private router: Router, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
-    this.form1 = this.fb.group({
-      nome: ['', Validators.required],
-      cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]]
-    });
-
-    this.form2 = this.fb.group({
-      nome: ['', Validators.required],
-      cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]]
-    });
-  }
-
-  addNewForm(formNumber: number): void {
-    if (formNumber === 1) this.showForm1 = true;
-    if (formNumber === 2) this.showForm2 = true;
-  }
-
-  cancelForm(formNumber: number): void {
-    if (formNumber === 1) {
-      this.showForm1 = false;
-      this.form1.reset();
-    }
-    if (formNumber === 2) {
-      this.showForm2 = false;
-      this.form2.reset();
+    for (let i = 0; i < this.totalForms; i++) {
+      this.forms.push(
+        this.fb.group({
+          nome: ['', Validators.required],
+          cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]]
+        })
+      );
+      this.showForms.push(false); // todos começam ocultos
     }
   }
 
-  onSubmit(formNumber: number): void {
-    if (formNumber === 1 && this.form1.valid) {
-      console.log('Formulário 1:', this.form1.value);
-      alert(`Formulário 1\nNome: ${this.form1.value.nome} \nCPF: ${this.form1.value.cpf}`);
-      this.cancelForm(1);
-    }
+  addNewForm(index: number): void {
+    this.showForms[index] = true;
+  }
 
-    if (formNumber === 2 && this.form2.valid) {
-      console.log('Formulário 2:', this.form2.value);
-      alert(`Formulário 2\nNome: ${this.form2.value.nome} \nCPF: ${this.form2.value.cpf}`);
-      this.cancelForm(2);
+  cancelForm(index: number): void {
+    this.showForms[index] = false;
+    this.forms[index].reset();
+  }
+
+  onSubmit(index: number): void {
+    if (this.forms[index].valid) {
+      console.log(`Formulário ${index + 1}:`, this.forms[index].value);
+      alert(`Formulário ${index + 1}\nNome: ${this.forms[index].value.nome} \nCPF: ${this.forms[index].value.cpf}`);
+      this.cancelForm(index);
+    } else {
+      alert(`Preencha corretamente os campos do Formulário ${index + 1}`);
     }
   }
 
