@@ -1,56 +1,99 @@
-  <div class="card-container">
-    <mat-toolbar class="card-navBar">
-      <div class="favicon-navBar">
-        <a href="/home">
-          <img src="/assets/favicon/Soro/favicon.ico" class="favicon">
-        </a>
-        <h1>Drop Tracking</h1>
-      </div>
-      <div class="navBar-buttons-center">
-        <a href="/monitor">Monitor</a>
-        <a href="/alert">Alert</a>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/register">Register</a>
-      </div>
-      <div class="navBar-buttons-right">
-        <a href="/about" class="nav-btn">About</a>
-        <a href="/help" class="nav-btn">Help</a>
-        <a class="nav-btn" (click)="logout()">Logout</a>
-      </div>
-    </mat-toolbar>
+<div class="card-container">
+  <mat-toolbar class="card-navBar">
+    <div class="favicon-navBar">
+      <a href="/home">
+        <img src="/assets/favicon/Soro/favicon.ico" class="favicon">
+      </a>
+      <h1>Drop Tracking</h1>
+    </div>
+    <div class="navBar-buttons-center">
+      <a href="/monitor">Monitor</a>
+      <a href="/alert">Alert</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/register">Register</a>
+    </div>
+    <div class="navBar-buttons-right">
+      <a href="/about" class="nav-btn">About</a>
+      <a href="/help" class="nav-btn">Help</a>
+      <a class="nav-btn" (click)="logout()">Logout</a>
+    </div>
+  </mat-toolbar>
 
-    <div class="forms-grid">
-      <div *ngFor="let form of forms; let i = index" class="form-section">
-        <!-- Botão Add -->
-        <button *ngIf="!showForms[i]"
-                mat-stroked-button
-                type="button"
-                class="btn-add"
-                (click)="addNewForm(i)">
-          <img src="assets/icon/add_mobile.svg" class="btn-icon"> Formulário {{ i + 1 }}
-        </button>
-        <!-- Formulário -->
-        <div class="form-container" *ngIf="showForms[i]">
-          <form [formGroup]="forms[i]" (ngSubmit)="onSubmit(i)">
+  <div class="forms-grid">
+    <div *ngFor="let form of forms; let i = index" class="form-section">
+      <!-- Botão Add -->
+      <button *ngIf="!showForms[i]"
+              mat-stroked-button
+              type="button"
+              class="btn-add"
+              (click)="addNewForm(i)">
+        <img src="assets/icon/add_mobile.svg" class="btn-icon"> Formulário {{ i + 1 }}
+      </button>
+
+      <!-- Formulário -->
+      <div class="form-container" [hidden]="!showForms[i]">
+        <form [formGroup]="forms[i]" (ngSubmit)="onSubmit(i)">
+          <!-- Dispositivo -->
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="field">
+              <mat-label>Device</mat-label>
+              <mat-select [disabled]="disableSelect.value">
+                <mat-option value="option1">Option 1</mat-option>
+                <mat-option value="option2">Option 2</mat-option>
+                <mat-option value="option3">Option 3</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <!-- Campo Prontuário -->
+            <mat-form-field appearance="outline" class="field">
+              <mat-label>Prontuário</mat-label>
+              <input matInput formControlName="medicalRecord" placeholder="Digite o Prontuário">
+            </mat-form-field>
+
             <!-- Campo Nome -->
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="field">
               <mat-label>Nome</mat-label>
-              <input matInput formControlName="nome" placeholder="Digite seu nome">
+              <input matInput formControlName="name" placeholder="Digite o Nome">
             </mat-form-field>
-            <!-- Campo CPF -->
-            <mat-form-field appearance="outline">
-              <mat-label>CPF</mat-label>
-              <input matInput formControlName="cpf" placeholder="Digite seu CPF">
+          </div>
+
+          <div class="form-row">
+            <!-- Campo Infusão -->
+            <mat-form-field appearance="outline" class="field">
+              <mat-label>Infusão</mat-label>
+              <input matInput formControlName="infusion">
             </mat-form-field>
-            <!-- Ações -->
-            <div class="form-actions">
-              <button mat-raised-button color="primary" type="submit">Salvar</button>
-              <button mat-stroked-button color="warn" type="button" (click)="cancelForm(i)">Cancelar</button>
-            </div>
-          </form>
-        </div>
+
+            <!-- Campo Leito -->
+            <mat-form-field appearance="outline" class="field">
+              <mat-label>Leito</mat-label>
+              <input matInput formControlName="bedRoom" placeholder="Digite o Leito">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <!-- Campo Alarme -->
+            <mat-form-field appearance="outline" class="field">
+              <mat-label>Alarme</mat-label>
+              <input matInput formControlName="alert">
+            </mat-form-field>
+
+            <!-- Campo Horário do Alarme -->
+            <mat-form-field appearance="outline" class="field">
+              <mat-label>Horário do Alarme</mat-label>
+              <input matInput formControlName="alertTime">
+            </mat-form-field>
+          </div>
+
+          <!-- Ações -->
+          <div class="form-actions">
+            <button mat-raised-button color="primary" type="submit">Salvar</button>
+            <button mat-stroked-button color="warn" type="button" (click)="cancelForm(i)">Cancelar</button>
+          </div>
+        </form>
       </div>
     </div>
-
   </div>
-
+</div>

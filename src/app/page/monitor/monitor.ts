@@ -5,12 +5,17 @@ import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
-import {MatFormField, MatLabel} from '@angular/material/input';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MatFormField, MatInput, MatInputModule, MatLabel} from '@angular/material/input';
+import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MatSelect, MatSelectModule} from '@angular/material/select';
+import {MatOption} from '@angular/material/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-monitor',
   imports: [
+    MatInput,
     MatToolbar,
     CommonModule,
     MatButtonModule,
@@ -18,7 +23,15 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
     MatIconModule,
     MatFormField,
     MatLabel,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelect,
+    MatOption,
+    FormsModule,
+
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule
   ],
   templateUrl: './monitor.html',
   styleUrl: './monitor.css'
@@ -28,6 +41,7 @@ export class MonitorComponent implements OnInit{
   showForms: boolean[] = [];
 
   totalForms = 12; // aqui você controla quantos formulários quer
+  disableSelect = new FormControl(false);
 
   constructor(private router: Router, private fb: FormBuilder) {
   }
