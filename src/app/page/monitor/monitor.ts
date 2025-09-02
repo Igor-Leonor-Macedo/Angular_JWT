@@ -27,7 +27,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatSelect,
     MatOption,
     FormsModule,
-
     MatCheckboxModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -40,7 +39,7 @@ export class MonitorComponent implements OnInit{
   forms: FormGroup[] = [];
   showForms: boolean[] = [];
 
-  totalForms = 12; // aqui você controla quantos formulários quer
+  totalForms = 12;
   disableSelect = new FormControl(false);
 
   constructor(private router: Router, private fb: FormBuilder) {
@@ -48,13 +47,20 @@ export class MonitorComponent implements OnInit{
 
   ngOnInit(): void {
     for (let i = 0; i < this.totalForms; i++) {
+      // Criando FormGroup com TODOS os campos do template
       this.forms.push(
         this.fb.group({
-          nome: ['', Validators.required],
-          cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]]
+          device: ['', Validators.required],
+          medicalRecord: ['', Validators.required],
+          name: ['', Validators.required],
+          infusion: ['', Validators.required],
+          bedRoom: ['', Validators.required],
+          alert: ['', Validators.required],
+          alertTime: ['', Validators.required]
         })
       );
-      this.showForms.push(false); // todos começam ocultos
+      // IMPORTANTE: Todos começam FALSE (ocultos)
+      this.showForms.push(false);
     }
   }
 
@@ -69,8 +75,9 @@ export class MonitorComponent implements OnInit{
 
   onSubmit(index: number): void {
     if (this.forms[index].valid) {
-      console.log(`Formulário ${index + 1}:`, this.forms[index].value);
-      alert(`Formulário ${index + 1}\nNome: ${this.forms[index].value.nome} \nCPF: ${this.forms[index].value.cpf}`);
+      const formData = this.forms[index].value;
+      console.log(`Formulário ${index + 1}:`, formData);
+      alert(`Formulário ${index + 1} salvo com sucesso!`);
       this.cancelForm(index);
     } else {
       alert(`Preencha corretamente os campos do Formulário ${index + 1}`);

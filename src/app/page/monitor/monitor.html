@@ -30,14 +30,14 @@
         <img src="assets/icon/add_mobile.svg" class="btn-icon"> Formulário {{ i + 1 }}
       </button>
 
-      <!-- Formulário -->
-      <div class="form-container" [hidden]="!showForms[i]">
+      <!-- Formulário - Usando *ngIf ao invés de [hidden] -->
+      <div class="form-container" *ngIf="showForms[i]">
         <form [formGroup]="forms[i]" (ngSubmit)="onSubmit(i)">
           <!-- Dispositivo -->
           <div class="form-row">
             <mat-form-field appearance="outline" class="field">
               <mat-label>Device</mat-label>
-              <mat-select [disabled]="disableSelect.value">
+              <mat-select formControlName="device">
                 <mat-option value="option1">Option 1</mat-option>
                 <mat-option value="option2">Option 2</mat-option>
                 <mat-option value="option3">Option 3</mat-option>
@@ -63,7 +63,7 @@
             <!-- Campo Infusão -->
             <mat-form-field appearance="outline" class="field">
               <mat-label>Infusão</mat-label>
-              <input matInput formControlName="infusion">
+              <input matInput formControlName="infusion" placeholder="Digite a Infusão">
             </mat-form-field>
 
             <!-- Campo Leito -->
@@ -77,20 +77,24 @@
             <!-- Campo Alarme -->
             <mat-form-field appearance="outline" class="field">
               <mat-label>Alarme</mat-label>
-              <input matInput formControlName="alert">
+              <input matInput formControlName="alert" placeholder="Digite o Alarme">
             </mat-form-field>
 
             <!-- Campo Horário do Alarme -->
             <mat-form-field appearance="outline" class="field">
               <mat-label>Horário do Alarme</mat-label>
-              <input matInput formControlName="alertTime">
+              <input matInput formControlName="alertTime" placeholder="Digite o Horário">
             </mat-form-field>
           </div>
 
           <!-- Ações -->
           <div class="form-actions">
-            <button mat-raised-button color="primary" type="submit">Salvar</button>
-            <button mat-stroked-button color="warn" type="button" (click)="cancelForm(i)">Cancelar</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="forms[i].invalid">
+              Salvar
+            </button>
+            <button mat-stroked-button color="warn" type="button" (click)="cancelForm(i)">
+              Cancelar
+            </button>
           </div>
         </form>
       </div>
