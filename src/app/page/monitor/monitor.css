@@ -170,6 +170,13 @@ h1{
   flex: 1; /* divide igualmente o espaço */
   min-width: 150px; /* evita ficar muito pequeno em telas menores */
 }
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-infix {
+  min-width: 0 !important; /* evita bug de cálculo inicial */
+}
 
 
 /*********************** Responsiveness smaller screens ***********************/
