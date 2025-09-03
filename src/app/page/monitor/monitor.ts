@@ -38,6 +38,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 export class MonitorComponent implements OnInit{
   forms: FormGroup[] = [];
   showForms: boolean[] = [];
+  isReadOnly = false;
+
 
   totalForms = 12;
   disableSelect = new FormControl(false);
@@ -50,6 +52,7 @@ export class MonitorComponent implements OnInit{
       // Criando FormGroup com TODOS os campos do template
       this.forms.push(
         this.fb.group({
+          // Se tirar a validação de um dos campos da ruim no layout
           device: ['', Validators.required],
           medicalRecord: ['', Validators.required],
           name: ['', Validators.required],
@@ -88,5 +91,17 @@ export class MonitorComponent implements OnInit{
     localStorage.clear();
     localStorage.removeItem('token');
     this.router.navigate(['/']);
+  }
+
+  savePacient(form: FormGroup<any>) {
+
+  }
+
+  newPacient(form: FormGroup<any>) {
+
+  }
+
+  resetAlert(form: FormGroup<any>) {
+
   }
 }

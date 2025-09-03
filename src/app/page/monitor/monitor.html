@@ -63,7 +63,7 @@
             <!-- Campo Infusão -->
             <mat-form-field appearance="outline" class="field">
               <mat-label>Infusão</mat-label>
-              <input matInput formControlName="infusion" placeholder="Digite a Infusão">
+              <input matInput formControlName="infusion">
             </mat-form-field>
 
             <!-- Campo Leito -->
@@ -77,23 +77,32 @@
             <!-- Campo Alarme -->
             <mat-form-field appearance="outline" class="field">
               <mat-label>Alarme</mat-label>
-              <input matInput formControlName="alert" placeholder="Digite o Alarme">
+              <input matInput formControlName="alert">
             </mat-form-field>
 
             <!-- Campo Horário do Alarme -->
             <mat-form-field appearance="outline" class="field">
               <mat-label>Horário do Alarme</mat-label>
-              <input matInput formControlName="alertTime" placeholder="Digite o Horário">
+              <input matInput formControlName="alertTime">
             </mat-form-field>
           </div>
 
           <!-- Ações -->
           <div class="form-actions">
-            <button mat-raised-button color="primary" type="submit" [disabled]="forms[i].invalid">
-              Salvar
+            <!-- Button Save Pacient -->
+            <button mat-stroked-button type="button" class="btn-save"(click)="savePacient(form)">
+              <img src="assets/icon/check_user.svg" class="btn-icon">Save
             </button>
-            <button mat-stroked-button color="warn" type="button" (click)="cancelForm(i)">
-              Cancelar
+            <!-- Button New Pacient -->
+            <button mat-stroked-button type="button" class="btn-new"(click)="newPacient(form)">
+              <img src="assets/icon/new_user.svg" class="btn-icon">New
+            </button>
+            <!-- Button Reset -->
+            <button mat-stroked-button type="button" class="btn-reset"(click)="resetAlert(form)">
+              <img src="assets/icon/reset_alarm.svg" class="btn-icon">Reset
+            </button>
+            <button mat-stroked-button color="warn" type="button" class="btn-cancel"(click)="cancelForm(i)">
+              <img src="assets/icon/cancel_icon_gray.svg" class="btn-icon">Cancel
             </button>
           </div>
         </form>
