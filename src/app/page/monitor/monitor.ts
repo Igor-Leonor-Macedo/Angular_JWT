@@ -38,11 +38,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 export class MonitorComponent implements OnInit{
   forms: FormGroup[] = [];
   showForms: boolean[] = [];
-  isReadOnly = false;
-
 
   totalForms = 12;
-  disableSelect = new FormControl(false);
 
   constructor(private router: Router, private fb: FormBuilder) {
   }
@@ -56,10 +53,12 @@ export class MonitorComponent implements OnInit{
           device: ['', Validators.required],
           medicalRecord: ['', Validators.required],
           name: ['', Validators.required],
-          infusion: ['', Validators.required],
           bedRoom: ['', Validators.required],
-          alert: ['', Validators.required],
-          alertTime: ['', Validators.required]
+
+          // Campos desabilitados usando { value: '', disabled: true }
+          infusion: [{ value: '', disabled: true }],
+          alert: [{ value: '', disabled: true }],
+          alertTime: [{ value: '', disabled: true }]
         })
       );
       // IMPORTANTE: Todos começam FALSE (ocultos)
