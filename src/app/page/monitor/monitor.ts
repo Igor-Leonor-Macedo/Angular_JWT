@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
@@ -30,7 +30,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatCheckboxModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    RouterLink
   ],
   templateUrl: './monitor.html',
   styleUrl: './monitor.css'

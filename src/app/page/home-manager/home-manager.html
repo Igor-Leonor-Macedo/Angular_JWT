@@ -1,1 +1,23 @@
-<p>home-manager works!</p>
+<div class="card-container">
+  <mat-toolbar class="card-navBar">
+    <div class="favicon-navBar">
+      <a routerLink="/home">
+        <img src="/assets/favicon/Soro/favicon.ico" class="favicon">
+      </a>
+      <h1>Drop Tracking</h1>
+    </div>
+    <div class="navBar-buttons-center">
+      <a routerLink="/monitor">Monitor</a>
+      <a routerLink="/alert">Alert</a>
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/register">Register</a>
+    </div>
+    <div class="navBar-buttons-right">
+      <a routerLink="/about" class="nav-btn">About</a>
+      <a routerLink="/help" class="nav-btn">Help</a>
+      <a class="nav-btn" (click)="logout()">Logout</a>
+    </div>
+  </mat-toolbar>
+  <h2>Home Manager</h2>
+</div>
+
