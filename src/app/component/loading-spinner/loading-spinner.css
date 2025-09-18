@@ -1,0 +1,11 @@
+.spinner-grid {
+  display: grid;
+  place-items: center;      /* Centraliza na vertical e horizontal */
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8); /* opcional */
+  z-index: 1000;
+}
