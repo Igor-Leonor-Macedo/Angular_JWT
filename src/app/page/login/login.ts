@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, signal} from '@angular/core';
 import {MatCard} from '@angular/material/card';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatInput, MatLabel} from '@angular/material/input';
@@ -10,6 +10,7 @@ import {SnackbarService} from '../../service/snack-bar.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
 import {AuthService} from '../../service/authService';
+import {LoadingSpinner} from '../../component/loading-spinner/loading-spinner';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ import {AuthService} from '../../service/authService';
     MatInput,
     ReactiveFormsModule,
     MatIconButton,
-    NgxMaskDirective /*Ativa a Máscara do CPF*/
+    NgxMaskDirective, /*Ativa a Máscara do CPF*/
+    LoadingSpinner,
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
@@ -33,6 +35,7 @@ import {AuthService} from '../../service/authService';
 })
 export class LoginComponent {
   form: FormGroup;
+  loading = signal(false); // sinal reativo do Angular 16+
 
   hide = signal(true);
   togglePasswordVisibility(event: MouseEvent) {
@@ -60,8 +63,12 @@ export class LoginComponent {
       const cpf = this.formatCPF(this.form.get('CPF')?.value);
       const password = this.form.get('Password')?.value;
 
+      this.loading.set(true); // 🚀 mostra o spinner
+
       this.loginService.login(cpf, password).subscribe({
         next:(response)=>{
+          this.loading.set(false); // ✅ esconde o spinner
+
           if(response){
 
             this.auth.saveToken(response);
@@ -77,6 +84,7 @@ export class LoginComponent {
           }
         },
         error:(error)=>{
+          this.loading.set(false); // ✅ esconde o spinner
           const errorMessage = error.error?.message || 'Erro ao tentar fazer login. Por favor, tente novamente.';
           this.snackbarService.error(errorMessage);
         }

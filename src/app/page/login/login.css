@@ -92,4 +92,18 @@
   }
 }
 
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;  /* Centraliza horizontal */
+  align-items: center;      /* Centraliza vertical */
+  background-color: rgba(255, 255, 255, 0.7); /* fundo translúcido */
+  z-index: 1000; /* fica por cima */
+}
+
+
 
